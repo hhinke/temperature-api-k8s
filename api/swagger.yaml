@@ -1,0 +1,59 @@
+swagger: "2.0"
+info:
+  description: "Temperature conversion API"
+  version: "1.0.0"
+  title: "Temperature conversion"
+  contact:
+    email: "hhinke@gmail.com"
+paths:
+  /fahrenheit/{value}/celsius:
+    get:
+      description: "From Fahrenheit to Celsius"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "value"
+        in: "path"
+        description: "Value to be converted"
+        required: true
+        type: "number"
+      responses:
+        "200":
+          description: "Conversion result"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Temperature"
+        "400":
+          description: "Bad Input Parameter"
+
+  /celsius/{value}/fahrenheit:
+    get:
+      description: "From Celsius to Fahrenheit"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "value"
+        in: "path"
+        description: "Value to be converted"
+        required: true
+        type: "number"
+      responses:
+        "200":
+          description: "Conversion result"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Temperature"
+        "400":
+          description: "Bad Input Parameter"
+
+definitions:
+  Temperature:
+    type: "object"
+    required:
+    - "value"
+    properties:
+      value:
+        type: "number"
+        example: 500.0
